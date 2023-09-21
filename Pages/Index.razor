@@ -1,11 +1,11 @@
 ﻿@page "/"
 @using PizzaPlaceRJRL.Shared
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Pedido de Pizzas</PageTitle>
 
-<!--Menu-->
+<!--Inicio del Menu-->
 
-<h1>Nuestra seleccion de pizzas</h1>
+<h1>Nuestra selección de pizzas</h1>
 
 @foreach (var pizza in Estado.Menu.Pizzas)
 {
@@ -16,6 +16,7 @@
         <div class ="col text-right">
             @($"{pizza.Precio:0.00}")
         </div>
+
         <div class ="col"></div>
         <div class ="col">
             <img src ="@ImagenPicante(pizza.Picante)"
@@ -29,7 +30,6 @@
         </div>
     </div>
 }
-
 <!--Fin del menu-->
 
 <!--Canasta de las compras-->
@@ -70,10 +70,9 @@
         <div class ="col">Total:</div>
         <div class="col text-right font-weight-bold"> @($"{Estado.PrecioTotal:0.00}")</div>
         <div class="col"></div>
-        <div class="col"></div
+        <div class="col"></div>
         <div class = "col"> </div>
     </div>
-
 }
 <!-- Fin de la canasta de las compras-->
 
@@ -91,38 +90,37 @@
             <InputText class ="form-control col-6" id="nombre"
                 @bind-Value="Estado.Canasta.clientes.Nombre" />
         </div>
-
+        @*Se establece el ValidationMessage para el Nombre*@
         <div class="row mb-2">
             <div class ="col-6 offset-2">
                 <ValidationMessage For="@(() => Estado.Canasta.clientes.Nombre)"/>
             </div>
         </div>
-
+        @*Calle*@
         <div class ="row  mb-2">
             <label class="col-2" for="calle">Calle:</label>
             <InputText class="form-control col-6" id ="calle"
                 @bind-Value="Estado.Canasta.clientes.Calle"/>
         </div>
-
+        @*Se establece el ValidationMessage para la Calle*@
         <div class="row mb-2">
             <div class ="col-6 offset-2">
                 <ValidationMessage For ="@(() => Estado.Canasta.clientes.Calle)"/>
             </div>
         </div>
-        
-
+        @*Ciudad*@
         <div class="row mb-2">
             <label class="col-2" for="ciudad">Ciudad:</label>
             <InputText class="form-control col-6" id ="ciudad"
                 @bind-Value="Estado.Canasta.clientes.Ciudad"/>
         </div>
-
+        @*Se establece el ValidationMessage para la ciudad*@
         <div class ="row mb-2">
             <div class ="col-6 offset-2">
                 <ValidationMessage For ="@(() => Estado.Canasta.clientes.Ciudad)" />
             </div>
         </div>
-
+        @*Boton para verificar la informacion insertada*@
         <div class ="row mb-2">
             <button class= "mx-auto w-25 btn btn-success" 
                 @onclick="RealizarPedido">Verificar</button>
@@ -130,8 +128,8 @@
     </fieldset>
 </EditForm>
 <br>
-
 <!--Fin de la entrada de datos del cliente-->
+
 @Estado.ToJson()
 
 @code
