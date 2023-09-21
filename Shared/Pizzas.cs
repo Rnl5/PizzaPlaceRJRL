@@ -1,6 +1,6 @@
 namespace PizzaPlaceRJRL.Shared;
 
-public class Pizza
+public class Pizzas
 {
     public int Id {get;}
     public string Nombre {get;}
@@ -9,7 +9,7 @@ public class Pizza
 
     public Picante Picante{get;}
 
-    public Pizza(int id, string nombre, decimal precio, Picante picante)
+    public Pizzas(int id, string nombre, decimal precio, Picante picante)
     {
         this.Id = id;
         this.Nombre = nombre;
