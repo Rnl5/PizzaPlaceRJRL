@@ -18,12 +18,12 @@
         </div>
         <div class ="col"></div>
         <div class ="col">
-            @*<img src ="@PicanteImagen(pizza.Picante)"*@
+            <img src ="@ImagenPicante(pizza.Picante)"
             alt ="@pizza.Picante" />
         </div>
         <div class ="col">
-            <button class ="btn btn success pl-4 pr-4"
-                @*@onclick="@(() => AgregarACanasta(pizza))">*@>
+            <button class ="btn btn-success pl-4 pr-4"
+                @onclick="@(() => AgregarACanasta(pizza))">
                 Agregar
             </button>
         </div>
@@ -37,6 +37,10 @@
 {
     private Estado Estado {get;} = new Estado();
 
+    private string ImagenPicante(Picante picante) => $"images/{picante.ToString().ToLower()}.png";
+
+    private void AgregarACanasta(Pizzas pizzas) => Estado.Canasta.Agregar(pizzas.Id);
+
         protected override void OnInitialized()
         {
             Estado.Menu.Agregar(
@@ -48,4 +52,6 @@
             Estado.Menu.Agregar(
                 new Pizzas(3, "Diabolo", 9.99M, Picante.Caliente));
         }
+
+    
 }

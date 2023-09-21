@@ -7,4 +7,6 @@ public class CanastaCompras
     public List<int> Ordenes {get; set;} = new List<int>();
 
     public bool Pagado{get; set;}
+
+    public void Agregar(int pizzaId) => Ordenes.Add(pizzaId);
 }
