@@ -53,7 +53,7 @@
                 <div class ="col">
                     <button class = "btn btn-danger"
                         @onclick="@(() => RemoverDeLaCanasta(pos))">
-                        Remover
+                        Eliminar
                     </button>
                 </div>
             </div>
@@ -74,9 +74,39 @@
         <div class = "col"> </div>
     </div>
 
-<!-- Fin de la canasta de las compras---->
 }
+<!-- Fin de la canasta de las compras-->
 
+
+<!--Detalles sobre el cliente-->
+
+<h1>Por favor, Introduzca sus datos abajo</h1>
+
+<fieldset>
+
+    <div class="row mb-2">
+        <label class="col-2" for ="nombre">Nombre:</label>
+        <input class ="col-6" id="nombre"
+            @bind="Estado.Canasta.clientes.Nombre" />
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-2" for="calle">Calle:</label>
+        <input class="col-6" id ="calle"
+            @bind="Estado.Canasta.clientes.Calle"/>
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-2" for="ciudad">Ciudad:</label>
+        <input class="col-6" id ="ciudad"
+            @bind="Estado.Canasta.clientes.Ciudad"/>
+    </div>
+
+
+    <button @onclick="RealizarPedido">Verificar</button>
+</fieldset>
+
+<!--Fin de la entrada de datos del cliente-->
 
 @code
 {
@@ -98,4 +128,9 @@
     private void AgregarACanasta(Pizzas pizzas) => Estado.Canasta.Agregar(pizzas.Id);
 
     private void RemoverDeLaCanasta(int pos) => Estado.Canasta.Eliminar(pos);
+    
+    private void RealizarPedido()
+    {
+        Console.WriteLine("Realizando pedido");
+    }
 }
