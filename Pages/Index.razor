@@ -80,29 +80,55 @@
 <!--Detalles sobre el cliente-->
 <br>
 
-<h1>Por favor, Introduzca sus datos abajo</h1>
-<fieldset>
-    @*No*@
-    <div class="row mb-2">
-        <label class="col-2" for ="nombre">Nombre:</label>
-        <input class ="col-6" id="nombre"
-            @bind="Estado.Canasta.clientes.Nombre" />
-    </div>
+<h1 class ="mt-2 mb-2">Por favor, Introduzca sus datos abajo</h1>
+<EditForm Model="@Estado.Canasta.clientes"
+            OnValidSubmit="RealizarPedido">
+    <DataAnnotationsValidator/>    
+    <fieldset>
+        @*Nombre del cliente*@
+        <div class="row mb-2">
+            <label class="col-2" for ="nombre">Nombre:</label>
+            <InputText class ="form-control col-6" id="nombre"
+                @bind-Value="Estado.Canasta.clientes.Nombre" />
+        </div>
 
-    <div class="row mb-2">
-        <label class="col-2" for="calle">Calle:</label>
-        <input class="col-6" id ="calle"
-            @bind="Estado.Canasta.clientes.Calle"/>
-    </div>
+        <div class="row mb-2">
+            <div class ="col-6 offset-2">
+                <ValidationMessage For="@(() => Estado.Canasta.clientes.Nombre)"/>
+            </div>
+        </div>
 
-    <div class="row mb-2">
-        <label class="col-2" for="ciudad">Ciudad:</label>
-        <input class="col-6" id ="ciudad"
-            @bind="Estado.Canasta.clientes.Ciudad"/>
-    </div>
+        <div class ="row  mb-2">
+            <label class="col-2" for="calle">Calle:</label>
+            <InputText class="form-control col-6" id ="calle"
+                @bind-Value="Estado.Canasta.clientes.Calle"/>
+        </div>
 
-    <button class= "btn btn-success" @onclick="RealizarPedido">Verificar</button>
-</fieldset>
+        <div class="row mb-2">
+            <div class ="col-6 offset-2">
+                <ValidationMessage For ="@(() => Estado.Canasta.clientes.Calle)"/>
+            </div>
+        </div>
+        
+
+        <div class="row mb-2">
+            <label class="col-2" for="ciudad">Ciudad:</label>
+            <InputText class="form-control col-6" id ="ciudad"
+                @bind-Value="Estado.Canasta.clientes.Ciudad"/>
+        </div>
+
+        <div class ="row mb-2">
+            <div class ="col-6 offset-2">
+                <ValidationMessage For ="@(() => Estado.Canasta.clientes.Ciudad)" />
+            </div>
+        </div>
+
+        <div class ="row mb-2">
+            <button class= "mx-auto w-25 btn btn-success" 
+                @onclick="RealizarPedido">Verificar</button>
+        </div>
+    </fieldset>
+</EditForm>
 <br>
 
 <!--Fin de la entrada de datos del cliente-->
