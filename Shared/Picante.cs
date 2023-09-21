@@ -2,7 +2,7 @@ namespace PizzaPlaceRJRL.Shared;
 
 public enum Picante{
     
-    None,
+    Nada,
     Picante,
     Caliente
 }
