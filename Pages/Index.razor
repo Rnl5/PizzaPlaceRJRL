@@ -32,14 +32,55 @@
 
 <!--Fin del menu-->
 
+<!--Canasta de las compras-->
+
+@if(Estado.Canasta.Ordenes.Any())
+{
+    <h1 class = "">Tu orden actual</h1>
+
+    @foreach(var(pizza, pos) in Estado.Canasta.Ordenes.Select(
+        (id,pos) => (Estado.Menu.GetPizza(id), pos)))
+        {
+            <div class ="row mb-2">
+                <div class ="col">
+                    @pizza.Nombre
+                </div>
+                <div class="col text-right">
+                    @($"{pizza.Precio:0.00}")
+                </div>
+                <div class ="col"></div>
+                <div class ="col"></div>
+                <div class ="col">
+                    <button class = "btn btn-danger"
+                        @onclick="@(() => RemoverDeLaCanasta(pos))">
+                        Remover
+                    </button>
+                </div>
+            </div>
+        }
+
+    <div class ="row">
+        <div class ="col"></div>
+        <div class ="col"><hr /> </div>
+        <div class="col"> </div>
+        <div class ="col"></div>
+    </div>
+
+    <div class ="row">
+        <div class ="col">Total:</div>
+        <div class="col text-right font-weight-bold"> @($"{Estado.PrecioTotal:0.00}")</div>
+        <div class="col"></div>
+        <div class="col"></div
+        <div class = "col"> </div>
+    </div>
+
+<!-- Fin de la canasta de las compras---->
+}
+
 
 @code
 {
     private Estado Estado {get;} = new Estado();
-
-    private string ImagenPicante(Picante picante) => $"images/{picante.ToString().ToLower()}.png";
-
-    private void AgregarACanasta(Pizzas pizzas) => Estado.Canasta.Agregar(pizzas.Id);
 
         protected override void OnInitialized()
         {
@@ -52,6 +93,9 @@
             Estado.Menu.Agregar(
                 new Pizzas(3, "Diabolo", 9.99M, Picante.Caliente));
         }
+    private string ImagenPicante(Picante picante) => $"images/{picante.ToString().ToLower()}.png";
 
-    
+    private void AgregarACanasta(Pizzas pizzas) => Estado.Canasta.Agregar(pizzas.Id);
+
+    private void RemoverDeLaCanasta(int pos) => Estado.Canasta.Eliminar(pos);
 }
