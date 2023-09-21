@@ -33,7 +33,7 @@
 <!--Fin del menu-->
 
 <!--Canasta de las compras-->
-
+<br>
 @if(Estado.Canasta.Ordenes.Any())
 {
     <h1 class = "">Tu orden actual</h1>
@@ -79,6 +79,7 @@
 
 
 <!--Detalles sobre el cliente-->
+<br>
 
 <h1>Por favor, Introduzca sus datos abajo</h1>
 
@@ -102,16 +103,17 @@
             @bind="Estado.Canasta.clientes.Ciudad"/>
     </div>
 
-
-    <button @onclick="RealizarPedido">Verificar</button>
+    <button class= "btn btn-success" @onclick="RealizarPedido">Verificar</button>
 </fieldset>
+<br>
 
 <!--Fin de la entrada de datos del cliente-->
+@Estado.ToJson()
 
 @code
 {
     private Estado Estado {get;} = new Estado();
-
+    
         protected override void OnInitialized()
         {
             Estado.Menu.Agregar(
